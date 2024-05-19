@@ -4,21 +4,18 @@
 
 #define MAX_PAGES 100
 
-// Page structure
 struct Page {
     char title[100];
 };
 
-// Global variables
 struct Page history[MAX_PAGES];
-int top = -1; // Initialize the top of the stack
-char currentTitle[100] = ""; // Initialize the current page title
+int top = -1; 
+char currentTitle[100] = "";
 
-// Function to add a new page title to the stack
 void visitPage(const char* title) {
     if (top < MAX_PAGES - 1) {
         strcpy(history[++top].title, title);
-        strcpy(currentTitle, title); // Update the current page title
+        strcpy(currentTitle, title); 
         printf("Visited: %s\n", title);
     } else {
         printf("History is full! Cannot add more pages.\n");
@@ -28,12 +25,11 @@ void visitPage(const char* title) {
     system("cls");
 }
 
-// Function to go back (pop from the stack)
 void goBack() {
     if (top >= 1) {
         printf("Going back to: %s\n", history[top - 1].title);
         top--;
-        strcpy(currentTitle, history[top].title); // Update the current page title
+        strcpy(currentTitle, history[top].title); 
     } else {
         printf("No previous page to go back to.\n");
     }
@@ -42,12 +38,11 @@ void goBack() {
     system("cls");
 }
 
-// Function to go forward (push back to the stack)
 void goForward() {
     if (top < MAX_PAGES - 1 && history[top + 1].title[0] != '\0') {
         printf("Going forward to: %s\n", history[top + 1].title);
         top++;
-        strcpy(currentTitle, history[top].title); // Update the current page title
+        strcpy(currentTitle, history[top].title); 
     } else {
         printf("No next page to go forward to.\n");
     }
@@ -56,7 +51,6 @@ void goForward() {
     system("cls");
 }
 
-// Function to display full browsing history
 void displayHistory() {
 	int i;
     printf("\nBrowsing History:\n");
@@ -68,10 +62,9 @@ void displayHistory() {
     system("cls");
 }
 
-// Function to clear browsing history
 void clearHistory() {
     top = -1;
-    strcpy(currentTitle, ""); // Clear the current page title
+    strcpy(currentTitle, ""); 
     printf("Browsing history cleared.\n");
     printf("\n\n\npress enter to continue...");
     getch();
@@ -85,7 +78,7 @@ int main() {
         printf("\t\t\t---------------------------------------\n");
         printf("\t\t\t\t\tWEB BROWSER\n");
         printf("\t\t\t---------------------------------------\n");
-        printf("\nCurrent Page: %s\n", currentTitle); // Display current page title
+        printf("\nCurrent Page: %s\n", currentTitle); 
         printf("\nMenu:\n");
         printf("1. Visit a Page\n");
         printf("2. Go Back\n");
@@ -99,7 +92,7 @@ int main() {
         switch (choice) {
             case 1:
                 printf("Enter page title: ");
-                scanf(" %[^\n]", currentTitle); // Update current page title
+                scanf(" %[^\n]", currentTitle);
                 visitPage(currentTitle);
                 break;
             case 2:
